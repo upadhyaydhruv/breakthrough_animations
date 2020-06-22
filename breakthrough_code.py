@@ -158,9 +158,18 @@ class Plot2(GraphScene):
         self.play(Write(text2), color=GREEN)
 
         self.wait()
+        for x in xs:
+            self.play(
+                TangentLine(graph1,inverse_interpolate(self.x_min,self.x_max,x), length=2, stroke_opacity=0.75)
+            )
+            self.remove(
+                TangentLine(graph1,inverse_interpolate(self.x_min,self.x_max,x), length=2, stroke_opacity=0.75)
+                )
+        '''
         self.play(
             LaggedStartMap(ShowCreation, lines)
         )
+        '''
 
     def setup_axes(self):
         grid = ScreenGrid()
@@ -212,5 +221,3 @@ class NeuralNet(Scene):
         self.wait(3)
         self.remove(text)
         self.wait(3)
-
-
